@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Plugins } from '@capacitor/core';
+
+const { SplashScreen, StatusBar } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,16 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    this.initializeApp();
+  }
+
+  async initializeApp() {
+    SplashScreen.hide().catch((err) => {
+      console.warn(err);
+    });
+    StatusBar.setBackgroundColor({ color: "#54a0ff" }).catch((err) => {
+      console.warn(err);
+    });
+  }
 }
